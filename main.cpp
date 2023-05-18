@@ -23,13 +23,17 @@ int main() {
 	cout << "Enter RTF, MaxW, STL and ForkProb: ";
 	cin >> rtf >> maxw >> stl >> forkprob;
 	fprintf(outputFile, "%d %d %d %d\n", (rtf), (maxw), (stl), (forkprob));
+	int ovht;
+	cout << "Enter OVHT time step: ";
+	cin >> ovht;
+	fprintf(outputFile, "%d\n", ovht);
 	int processes;
 	cout << "Enter number of Processes: ";
 	cin >> processes;
 	fprintf(outputFile, "%d\n", processes);
 	int at, ct, dl, n;
-	cout << "Enter range of AT, CT, N, DL: ";
-	cin >> at >> ct >> n >> dl;
+	cout << "Enter range of AT, CT, N: ";
+	cin >> at >> ct >> n;
 	int R, D;
 	cout << "Enter range of R, D: ";
 	cin >> R >> D;
@@ -40,7 +44,14 @@ int main() {
 			io = 0;
 		else
 			io = r(n) - 1;
-		fprintf(outputFile, "%d %d %d %d %d", AT, i, r(ct), io, r(dl));
+		int rct = r(ct);
+		int rr = 0;
+		int rd = 0;
+		if (io != 0) {
+			for (int i = 0; i < io; i++)
+				rd += r(D);
+		}
+		fprintf(outputFile, "%d %d %d %d %d", AT, i, rct, io, AT+rct+rd);
 		AT += r(at) -1;
 		if (io != 0) {
 			fprintf(outputFile, " ");
