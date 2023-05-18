@@ -3,9 +3,7 @@
 using namespace std;
 
 
-int r(int x) {
-	return (1 + rand() % x);
-}
+int r(int x) { return (1 + rand() % x); }
 
 int main() {
 	srand(time(0));
